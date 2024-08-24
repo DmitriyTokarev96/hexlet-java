@@ -2,7 +2,42 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-
+bash_history
+.gitconfig
+.jdks/
+.lesshst
+.ssh/
+.vscode/
+3D Objects/
+AppData/
+Application Data
+Contacts/
+Cookies
+Desktop/
+Documents/
+Downloads/
+Favorites/
+Links/
+Local Settings
+Music/
+NTUSER.DAT
+NTUSER.DAT.NotTweaked
+NTUSER.DAT{2e1fe0b0-4f09-11ed-8738-e0d55ea263be}.TM.blf
+NTUSER.DAT{2e1fe0b0-4f09-11ed-8738-e0d55ea263be}.TMContainer00000000000000000001.regtrans-ms
+NTUSER.DAT{2e1fe0b0-4f09-11ed-8738-e0d55ea263be}.TMContainer00000000000000000002.regtrans-ms
+NetHood
+OneDrive/
+Pictures/
+PrintHood
+Recent
+Saved Games/
+Searches/
+SendTo
+Videos/
+hexlet-git/
+ntuser.dat.LOG1
+ntuser.dat.LOG2
+ntuser.ini
 ### Eclipse ###
 .apt_generated
 .classpath
