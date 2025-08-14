@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="001-create-wallets-table" author="developer">
+        
+        <!-- Создание таблицы wallets -->
+        <createTable tableName="wallets">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="balance" type="decimal(19,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="bigint" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Добавление комментариев к таблице и колонкам -->
+        <comment tableName="wallets">
+            Таблица для хранения информации о кошельках пользователей
+        </comment>
+        
+        <comment columnName="wallets.id">
+            Уникальный идентификатор кошелька (UUID)
+        </comment>
+        
+        <comment columnName="wallets.balance">
+            Текущий баланс кошелька в копейках/центах
+        </comment>
+        
+        <comment columnName="wallets.created_at">
+            Дата и время создания кошелька
+        </comment>
+        
+        <comment columnName="wallets.updated_at">
+            Дата и время последнего обновления кошелька
+        </comment>
+        
+        <comment columnName="wallets.version">
+            Версия записи для оптимистичной блокировки
+        </comment>
+
+        <!-- Создание индексов для оптимизации запросов -->
+        <createIndex tableName="wallets" indexName="idx_wallets_id">
+            <column name="id"/>
+        </createIndex>
+        
+        <createIndex tableName="wallets" indexName="idx_wallets_created_at">
+            <column name="created_at"/>
+        </createIndex>
+
+        <!-- Добавление ограничений -->
+        <addCheckConstraint tableName="wallets" 
+                           constraintName="chk_wallets_balance_positive" 
+                           condition="balance >= 0"/>
+        
+        <addCheckConstraint tableName="wallets" 
+                           constraintName="chk_wallets_version_positive" 
+                           condition="version >= 0"/>
+
+        <!-- Добавление значений по умолчанию -->
+        <addDefaultValue tableName="wallets" 
+                        columnName="balance" 
+                        defaultValueNumeric="0"/>
+        
+        <addDefaultValue tableName="wallets" 
+                        columnName="version" 
+                        defaultValueNumeric="0"/>
+
+    </changeSet>
+
+</databaseChangeLog>
